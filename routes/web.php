@@ -160,13 +160,17 @@ Route::group(['middleware' => 'auth'], function () {
 /************************ SUPER ADMIN ****************************/
 Route::group(['namespace' => 'SuperAdmin','middleware' => 'super_admin', 'prefix' => 'super_admin'], function(){
 
+    Route::get('settings', 'SettingController@index')->name('settings');
     Route::put('settings', 'SettingController@update')->name('settings.update');
     // Schools
     Route::resource('schools', 'SchoolController');
 
-    // Branches
-    Route::resource('branches', 'BranchController');
-    Route::post('branches/verify-login', 'BranchController@verifyLogin')->name('branches.verify-login');
+    // School Branches
+    Route::resource('school_branches', 'SchoolBranchController');
+
+    // Branches (alias for school_branches)
+    Route::resource('branches', 'SchoolBranchController');
+    Route::post('branches/verify-login', 'SchoolBranchController@verifyLogin')->name('branches.verify-login');
 });
 
 /************************ PARENT ****************************/

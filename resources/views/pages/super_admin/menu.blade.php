@@ -1,11 +1,9 @@
 {{--Manage Settings--}}
 <li class="nav-item">
-    <a href="{{ route('settings') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['settings',]) ? 'active' : '' }}"><i class="icon-gear"></i> <span>Settings</span></a>
+    <a href="{{ route('settings') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['settings']) ? 'active' : '' }}"><i class="icon-gear"></i> <span>Settings</span></a>
 </li>
-
-{{--School Branches--}}
 <li class="nav-item">
-    <a href="{{ route('school_branches.index') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['school_branches.index', 'school_branches.create', 'school_branches.edit', 'school_branches.show']) ? 'active' : '' }}"><i class="icon-office"></i> <span>School Branches</span></a>
+    <a href="{{ route('branches.index') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['branches.index']) ? 'active' : '' }}"><i class="icon-office"></i> Manage Branches</a>
 </li>
 
 {{--Pins--}}
