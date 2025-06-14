@@ -18,16 +18,11 @@ class TTRecordRequest extends FormRequest
      */
     public function rules()
     {
-        if($this->method() === 'POST'){
-            return [
-                'name' => 'required|string|min:3|unique:time_table_records',
-                'my_class_id' => 'required',
-            ];
-        }
-
         return [
-            'name' => 'required|string|min:3|unique:time_table_records,name,'.$this->ttr,
-            'my_class_id' => 'required',
+            'name' => 'required|string|min:3',
+            'my_class_id' => 'required|exists:my_classes,id',
+            'exam_id' => 'sometimes|nullable|exists:exams,id',
+            'school_branch_id' => 'required|exists:school_branches,id',
         ];
     }
 
