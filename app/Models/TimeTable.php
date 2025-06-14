@@ -4,22 +4,22 @@ namespace App\Models;
 
 use Eloquent;
 
-class TimeTable extends Eloquent
+class TimeTableRecord extends Eloquent
 {
-    protected $fillable = ['ttr_id', 'ts_id', 'exam_date', 'day', 'timestamp_from', 'timestamp_to', 'subject_id',];
+    protected $fillable = ['name', 'my_class_id', 'exam_id', 'year'];
 
-    public function time_slot()
+    public function my_class()
     {
-        return $this->belongsTo(TimeSlot::class, 'ts_id');
+        return $this->belongsTo(MyClass::class);
     }
 
-    public function tt_record()
+    public function exam()
     {
-        return $this->belongsTo(TimeTableRecord::class, 'ttr_id');
+        return $this->belongsTo(Exam::class);
     }
 
-    public function subject()
+    public function schoolBranch()
     {
-        return $this->belongsTo(Subject::class);
+        return $this->belongsTo(SchoolBranch::class, 'school_branch_id');
     }
 }

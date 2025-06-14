@@ -39,6 +39,18 @@
                            </div>
 
                            <div class="form-group row">
+                               <label for="school_branch_id" class="col-lg-3 col-form-label font-weight-semibold">Branch <span class="text-danger">*</span></label>
+                               <div class="col-lg-9">
+                                   <select required data-placeholder="Select Branch" class="form-control select" name="school_branch_id" id="school_branch_id">
+                                       <option value="">Select Branch</option>
+                                       @foreach($branches as $branch)
+                                           <option {{ old('school_branch_id') == $branch->id ? 'selected' : '' }} value="{{ $branch->id }}">{{ $branch->name }}</option>
+                                       @endforeach
+                                   </select>
+                               </div>
+                           </div>
+
+                           <div class="form-group row">
                                <label for="my_class_id" class="col-lg-3 col-form-label font-weight-semibold">Class <span class="text-danger">*</span></label>
                                <div class="col-lg-9">
                                    <select required data-placeholder="Select Class" class="form-control select" name="my_class_id" id="my_class_id">
@@ -77,6 +89,7 @@
                             <tr>
                                 <th>S/N</th>
                                 <th>Name</th>
+                                <th>Branch</th>
                                 <th>Class</th>
                                 <th>Type</th>
                                 <th>Year</th>
@@ -88,8 +101,9 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $ttr->name }}</td>
+                                    <td>{{ $ttr->schoolBranch->name ?? 'N/A' }}</td>
                                     <td>{{ $ttr->my_class->name }}</td>
-                                    <td>{{ ($ttr->exam_id) ? $ttr->exam->name : 'Class TimeTable' }}
+                                    <td>{{ ($ttr->exam_id) ? $ttr->exam->name : 'Class TimeTable' }}</td>
                                     <td>{{ $ttr->year }}</td>
                                     <td class="text-center">
                                         <div class="list-icons">

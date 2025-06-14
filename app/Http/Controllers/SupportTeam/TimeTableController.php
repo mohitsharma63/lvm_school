@@ -25,11 +25,13 @@ class TimeTableController extends Controller
         $this->year = Qs::getCurrentSession();
     }
 
+    // Added branches data to TimeTable index method
     public function index()
     {
-        $d['exams'] = $this->exam->getExam(['year' => $this->year]);
         $d['my_classes'] = $this->my_class->all();
         $d['tt_records'] = $this->tt->getAllRecords();
+        $d['exams'] = $this->exam->all();
+        $d['branches'] = \App\Models\SchoolBranch::where('is_active', 1)->orderBy('name')->get();
 
         return view('pages.support_team.timetables.index', $d);
     }
